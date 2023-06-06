@@ -23,6 +23,7 @@ app.post('/register',async(req,res) =>{
     console.log("hash",hash)
     const customerData = await customer.create({name :`${data.value.name}`,email:`${data.value.email}`,password:`${hash}`,address:`${data.value.address}`,phoneNumber:`${data.value.phoneNumber}`})
     console.log("dataaaaaaaaa",customerData)
+    
     res.send(data)
    
 })
