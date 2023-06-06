@@ -23,6 +23,14 @@ const Login = () => {
     border: "1px solid red",
     fontWeight: "bold",
   };
+  const backBtnn = {
+    color: "white",
+    marginLeft: "50%",
+    marginBottom:"20px",
+    backgroundColor: "green",
+    border: "1px solid green",
+    fontWeight: "bold",
+  };
   const submitBtn = {
     marginLeft: "50%",
   };
@@ -70,13 +78,24 @@ if(userEmail.some((el) => el.email === value)){
     });
     const datauser = await response.json();
     console.log("dataaaa", datauser);
-    if (datauser === false) {
+    if (datauser.decryptpwd === false) {
       alert("Invalid email or password");
     } else {
-      navigate("/");
+      var now = new Date();
+      var time = now.getTime();
+      // time += 60 * 1000;  1min
+      time += 3600 * 1000;
+      now.setTime(time);
+      document.cookie = `tokenCookie=${datauser.token};expires=${now.toUTCString()};path=/`;
+
+      navigate("/home");
     }
     // return data;
   };
+
+  const handleSignIn = () =>{
+    navigate('/')
+  }
 
   return (
     <div className="container">
@@ -96,6 +115,9 @@ if(userEmail.some((el) => el.email === value)){
         </div>
         <p style={pTag}>{errors.password?.message}</p>
 
+        <button  style={backBtnn} onClick={handleSignIn}>
+          SignUp
+        </button>
         <button type="submit" style={backBtn}>
           Submit
         </button>

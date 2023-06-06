@@ -9,6 +9,7 @@ import Apper from "../src/Pages/Login/asb";
 import Login from "./Pages/Login/login";
 // import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
+import Home from "./Pages/main/home";
 
 
 export default function App() {
@@ -30,7 +31,8 @@ export default function App() {
       
           <Route element={<Registration/>} path="/" exact />
           <Route element={<Login />} path="/reg" />
-        
+          <Route element={<Home />} path="/home" />
+          
         </Routes>
       </Router>
 
